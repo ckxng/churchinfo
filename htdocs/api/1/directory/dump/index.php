@@ -32,29 +32,33 @@
  *     result: 1 or 0     - 1 if sucessful, 0 if error
  *     data: [            - empty array on failure, or array of families
  *       {
- *         ...,           - family object
+ *         id: ...,       - family object
+ *         ...,
+ *         people: [
+ *           {
+ *             id: ...,   - person object
+ *             ...
+ *           }, ...
+ *         ]
  *       }, ...
  *     ]
  *   }
  */
 
-//Include the function library
-require "../../../../Include/Config.php";
-require "../../../../Include/Functions.php";
+$db = new mysqli("parkrow.db", "churchinfo_api", "GLRmyJSLZSL4XV95", "churchinfo");
 
 $API_SECRET = "17a4194bdb29b609d39edcc6c3f5c3e781d2068b";
-$API_AUTHORIZED = 0;
-$API_NEW_TOKEN = 0;
-function checkApiKey() {
+function checkApiKey($secret) {
   $apikey = 0;
   $nonce = 0;
-  if(isset($_GET["key"]) && strlen($_GET["key"]) && isset($_SESSION["nonce"]) && strlen($_SESSION["nonce"])) {
+  if(isset($_GET["key"]) && strlen($_GET["key"]) && isset($_GET["nonce"]) && strlen($_GET["nonce"])) {
     $apikey = $_GET["key"];
-    $nonce = $_SESSION["nonce"];
+    $nonce = $_GET["nonce"];
+    if($apikey == sha1($secret.$nonce)) {
+      return(1);
+    }
   }
-  if($apikey = sha1sum("$API_SECRET$nonce")) {
-    $API_AUTHORIZED = 1;
-  }
+  return(0);
 }
 
 header("Content-type: text/x-json");
@@ -64,24 +68,23 @@ $response = array(
   'data' => array()
 );
 
-checkApiKey();
-if(! $API_AUTHENTICATED) {
+if(! checkApiKey($API_SECRET)) {
   print json_encode($response);
   exit;
 }
 
 $directorySQL = "select * from `v_directory_report`";
-$directoryResults = RunQuery($directorySQL);
+$directoryResults = $db->query($directorySQL);
 
 $families = array();
-while($person = mysql_fetch_object($directoryResults))
+while($person = $directoryResults->fetch_object())
 {
-  if(! isset($families[$person->per_fam_ID]) {
+  if(! isset($families[$person->per_fam_ID])) {
     $families[$person->per_fam_ID] = array(
       "id" => $person->per_fam_ID,
       "name" => $person->fam_Name,
       "people" => array()
-    )
+    );
   }
 
   $new_person = array(
@@ -93,11 +96,11 @@ while($person = mysql_fetch_object($directoryResults))
     "suffix" => $person->per_Suffix
   );
 
-  $families[$person->per_fam_ID] = $new_person;
+  $families[$person->per_fam_ID]["people"][] = $new_person;
 }
 
 $response["result"] = 1;
-for($families as $k, $v) {
+foreach($families as $k => $v) {
   $response["data"][] = $v;
 }
 
