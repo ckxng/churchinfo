@@ -88,6 +88,16 @@ while($person = $directoryResults->fetch_object())
     $families[$person->per_fam_ID] = array(
       "id" => $person->per_fam_ID,
       "name" => $person->fam_Name,
+      "address1" => $person->fam_Address1,
+      "address2" => $person->fam_Address2,
+      "city" => $person->fam_City,
+      "state" => $person->fam_State,
+      "zip" => $person->fam_Zip,
+      "country" => $person->fam_Country,
+      "homePhone" => $person->fam_HomePhone,
+      "workPhone" => $person->fam_WorkPhone,
+      "cellPhone" => $person->fam_CellPhone,
+      "email" => $person->fam_Email,
       "people" => array()
     );
   }
@@ -98,7 +108,19 @@ while($person = $directoryResults->fetch_object())
     "firstName" => $person->per_FirstName,
     "middleName" => $person->per_MiddleName,
     "lastName" => $person->per_LastName,
-    "suffix" => $person->per_Suffix
+    "suffix" => $person->per_Suffix,
+    "address1" => $person->per_Address1,
+    "address2" => $person->per_Address2,
+    "city" => $person->per_City,
+    "state" => $person->per_State,
+    "zip" => $person->per_Zip,
+    "country" => $person->per_Country,
+    "homePhone" => $person->per_HomePhone,
+    "workPhone" => $person->per_WorkPhone,
+    "cellPhone" => $person->per_CellPhone,
+    "email" => $person->per_Email,
+    "birthMonth" => $person->per_BirthMonth,
+    "birthDay" => $person->per_BirthDay
   );
 
   $families[$person->per_fam_ID]["people"][] = $new_person;
