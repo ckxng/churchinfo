@@ -1,6 +1,5 @@
 <?php
 
-global $APICONFIG;
 $APICONFIG = array(
   "db" => array(
     "host" => "db01.server.com",
@@ -9,7 +8,7 @@ $APICONFIG = array(
     "dbname" => "churchinfo"
   ),
   "keys" => array(
-    "0" => "7nyon7osdfan7osdan"
+    "web1" => "7nyon7osdfan7osdan"
   )
 );
 
