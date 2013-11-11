@@ -59,7 +59,7 @@ function checkApiKey() {
     $apikey = $_GET["key"];
     $nonce = $_GET["nonce"];
     $uid = $_GET["uid"];
-    if(isset($APICONFIG["keys"][$uid] == sha1($secret.$nonce)) {
+    if(isset($APICONFIG["keys"][$uid]) == sha1($secret.$nonce)) {
       return(1);
     }
   }
