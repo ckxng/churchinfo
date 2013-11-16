@@ -63,6 +63,7 @@ class PDF_Directory extends ChurchInfoReport {
 
     function Footer()
     {
+    	return; /* no footer */
         global $bDirUseTitlePage;
 
         if (($this->PageNo() > 1) || ($bDirUseTitlePage == false))
