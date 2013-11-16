@@ -333,7 +333,8 @@ class PDF_Directory extends ChurchInfoReport {
         if ($bDirWedding && ($fam_WeddingDate > 0))
             $sFamilyStr .= "   " . gettext('Wedding') . ": " . Date("m/d/Y", strtotime($fam_WeddingDate)) . "\n";
 
-        return $sFamilyStr;
+	/* if $sFamilyStr contains text, also add an extra \n */
+        return strlen($sFamilyStr)?"$sFamilyStr\n":$sFamilyStr;
     }
 
     // This function formats the string for the head of household.
