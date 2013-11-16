@@ -415,7 +415,7 @@ class PDF_Directory extends ChurchInfoReport {
         if (0&&strlen($sHeadStr) == $iTempLen) /* always print the name, it looks silly otherwise */
             return "";
         else
-            return $sHeadStr;
+            return "$sHeadStr\n";
     }
 
     // This function formats the string for other family member records
@@ -431,7 +431,11 @@ class PDF_Directory extends ChurchInfoReport {
 
         extract($aRow);
 
-        $sMemberStr = $per_FirstName;
+	/* print * for children */
+	if(in_array($per_fmr_ID, $aChildren)) {
+		$sMemberStr ="*";
+	}
+        $sMemberStr .= $per_FirstName;
 
         // Check to see if family member has different last name
         if ( strlen($per_LastName) && ($per_LastName != $this->sLastName) )
