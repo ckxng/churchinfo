@@ -33,7 +33,7 @@ class PDF_Directory extends ChurchInfoReport {
     var $_Margin_Top  = 0;         // Top margin 
     var $_Char_Size   = 10;        // Character size
     var $_Column      = 0;
-    var $_Font        = 'Times';
+    var $_Font        = 'Helvetica';
     var $_Gutter      = 5;
     var $_LS          = 4;
     var $sFamily;
