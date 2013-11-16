@@ -412,7 +412,7 @@ class PDF_Directory extends ChurchInfoReport {
 
         // If there is no additional information for either head or spouse, there is no
         // need to print the name in the sublist, they are already are in the heading.
-        if (1||strlen($sHeadStr) == $iTempLen) /* always print the name, it looks silly otherwise */
+        if (0&&strlen($sHeadStr) == $iTempLen) /* always print the name, it looks silly otherwise */
             return "";
         else
             return $sHeadStr;
