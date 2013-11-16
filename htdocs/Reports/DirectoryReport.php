@@ -238,6 +238,7 @@ class PDF_Directory extends ChurchInfoReport {
     // changes.
     function Add_Header($sLetter)
     {
+    	return; /* no more block letters */
         $this->Check_Lines(2, 0, 0);
         $this->SetTextColor(255);
         $this->SetFont($this->_Font,'B',$this->_Char_Size);
