@@ -430,6 +430,7 @@ class PDF_Directory extends ChurchInfoReport {
         global $bDirPersonalWorkEmail;
         global $bDirBirthday;
         global $aChildren;
+	$sMemberStr = '';
 
         extract($aRow);
 
