@@ -10,6 +10,15 @@ This code is uploaded for the benefit of the community, and perhaps someone out
 there will take the time to send me a pull request to establish a proper API
 for retrieving directory data.
 
-Churchinfo is licensed under various GPL licenses, and this repository ships with
-a LICENSE file for GPLv3.
+Status
+======
 
+This software is ABANDONED.
+
+This fork contains patches that are currently deployed and working perfectly.
+There is no present interest in adding additional functionality at this time.
+
+Copying
+=======
+
+Churchinfo is licensed under various GPL licenses.  See LICENSE for details.
